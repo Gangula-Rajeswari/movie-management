@@ -52,10 +52,12 @@ function getAllMovies() {
                 movieList.appendChild(div);
             });
         });
-}*/
+}
 
 
-const API_URL = "http://localhost:8080/api/movies";
+const API_URL = "http://localhost:8080/api/movies";*/
+const API_URL = "https://movie-backend.onrender.com/api/movies";
+
 
 function addMovie() {
 
