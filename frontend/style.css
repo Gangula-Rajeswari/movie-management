@@ -4,96 +4,109 @@
 
 body {
     margin: 0;
-    height: 100vh;
-    overflow: hidden;   /* ❌ NO SCROLL */
-    font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #141e30, #243b55);
-    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f172a;
+    color: #ffffff;
 }
 
 .app {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
 }
 
 h1 {
-    margin: 0;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 .tagline {
-    margin: 4px 0 16px;
-    font-size: 14px;
-    opacity: 0.8;
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 25px;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    width: 90%;
-    max-width: 1100px;
+    gap: 15px;
 }
 
 .card {
-    background: white;
-    color: #333;
-    border-radius: 12px;
-    padding: 14px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-    height: 340px;   /* fixed height */
-    display: flex;
-    flex-direction: column;
+    background: #020617;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 
 .card h2 {
-    text-align: center;
-    margin: 0 0 8px;
+    margin-top: 0;
     font-size: 18px;
 }
 
-input {
-    padding: 8px;
-    margin-bottom: 6px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 13px;
-}
-
-button {
-    margin-top: auto;
+input, textarea {
+    width: 100%;
+    margin-bottom: 10px;
     padding: 8px;
     border-radius: 6px;
     border: none;
-    background: #e50914;
-    color: white;
-    cursor: pointer;
+    outline: none;
+    font-size: 14px;
 }
 
-button.secondary {
-    background: #333;
+textarea {
+    resize: none;
+    height: 60px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.secondary {
+    background: #16a34a;
+}
+
+.secondary:hover {
+    background: #15803d;
 }
 
 pre {
-    background: #f2f2f2;
-    padding: 6px;
+    background: #020617;
+    padding: 10px;
     border-radius: 6px;
-    font-size: 12px;
-    max-height: 120px;
-    overflow: hidden;  /* no scroll */
+    white-space: pre-wrap;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
 .movie-list {
-    margin-top: 8px;
-    overflow: hidden;  /* no scroll */
-    font-size: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .movie-item {
-    background: #f5f5f5;
-    padding: 6px;
+    background: #020617;
+    padding: 10px;
     border-radius: 6px;
-    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }

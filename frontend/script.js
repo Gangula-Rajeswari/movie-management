@@ -1,72 +1,17 @@
-/*const API_URL = "http://localhost:8080/api/movies";
-
-function addMovie() {
-    fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            id: id.value.trim(),
-            name: name.value.trim(),
-            description: description.value.trim(),
-            rating: rating.value
-        })
-    })
-    .then(res => res.text())
-    .then(alert);
-}
-
-
-/*function addMovie() {
-    fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            id: id.value,
-            name: name.value,
-            description: description.value,
-            rating: rating.value
-        })
-    })
-    .then(res => res.text())
-    .then(alert);
-}
-
-function getMovie() {
-    fetch(`${API_URL}/${searchId.value}`)
-        .then(res => res.text())
-        .then(data => result.innerText = data);
-}
-
-function getAllMovies() {
-    fetch(API_URL)
-        .then(res => res.json())
-        .then(data => {
-            movieList.innerHTML = "";
-            data.slice(0, 4).forEach(movie => {   // limit items
-                const div = document.createElement("div");
-                div.className = "movie-item";
-                div.innerHTML = `
-                    <b>${movie.name}</b><br>
-                    ⭐ ${movie.rating}
-                `;
-                movieList.appendChild(div);
-            });
-        });
-}
-
-
-const API_URL = "http://localhost:8080/api/movies";*/
 const API_URL = "https://movie-backend.onrender.com/api/movies";
 
-
+// ADD MOVIE
 function addMovie() {
+    const name = document.getElementById("name").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const rating = document.getElementById("rating").value;
 
-    const movie = {
-        id: document.getElementById("id").value.trim(),
-        name: document.getElementById("name").value.trim(),
-        description: document.getElementById("description").value.trim(),
-        rating: document.getElementById("rating").value
-    };
+    if (!name || !description || !rating) {
+        alert("All fields are required");
+        return;
+    }
+
+    const movie = { name, description, rating };
 
     fetch(API_URL, {
         method: "POST",
@@ -76,20 +21,23 @@ function addMovie() {
         body: JSON.stringify(movie)
     })
     .then(res => {
-        if (!res.ok) {
-            return res.text().then(err => { throw err; });
-        }
+        if (!res.ok) throw new Error("Failed to add movie");
         return res.json();
     })
-    .then(data => {
+    .then(() => {
         alert("Movie added successfully!");
-        console.log(data);
+        document.getElementById("name").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("rating").value = "";
+        getAllMovies();
     })
-    .catch(err => alert(err));
+    .catch(err => alert(err.message));
 }
+
+// GET MOVIE BY ID
 function getMovie() {
-    const id = document.getElementById("searchId").value.trim();
-    const resultBox = document.getElementById("result");
+    const id = document.getElementById("searchMovieId").value.trim();
+    const resultBox = document.getElementById("searchResult");
 
     if (!id) {
         resultBox.innerText = "Please enter Movie ID";
@@ -97,59 +45,43 @@ function getMovie() {
     }
 
     fetch(`${API_URL}/${id}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Movie not found or backend not reachable");
-            }
-            return response.json();
-        })
-        .then(data => {
-            resultBox.innerText = JSON.stringify(data, null, 2);
-        })
-        .catch(error => {
-            resultBox.innerText = error.message;
-        });
-}
-
-
-/*function getMovie() {
-    const id = document.getElementById("searchId").value.trim();
-    const resultBox = document.getElementById("result");
-
-    if (id === "") {
-        resultBox.innerText = "Please enter Movie ID";
-        return;
-    }
-
-    fetch(`${API_URL}/${id}`)
         .then(res => {
-            if (!res.ok) {
-                return res.text().then(err => { throw err; });
-            }
+            if (!res.ok) throw new Error("Movie not found");
             return res.json();
         })
-        .then(data => {
-            resultBox.innerText = JSON.stringify(data, null, 2);
+        .then(movie => {
+            resultBox.innerText =
+`ID: ${movie.id}
+Name: ${movie.name}
+Description: ${movie.description}
+Rating: ${movie.rating}`;
         })
-        .catch(err => {
-            resultBox.innerText = err;
-        });
+        .catch(err => resultBox.innerText = err.message);
 }
-*/
 
+// GET ALL MOVIES
 function getAllMovies() {
+    const movieList = document.getElementById("movieList");
+    movieList.innerHTML = "Loading...";
+
     fetch(API_URL)
         .then(res => res.json())
         .then(data => {
             movieList.innerHTML = "";
-            data.slice(0, 4).forEach(movie => {   // limit items
+            data.slice(0, 4).forEach(movie => {
                 const div = document.createElement("div");
                 div.className = "movie-item";
                 div.innerHTML = `
-                    <b>${movie.name}</b><br>
-                    ⭐ ${movie.rating}
+<b>${movie.name}</b><br>
+⭐ ${movie.rating}
                 `;
                 movieList.appendChild(div);
             });
+        })
+        .catch(() => {
+            movieList.innerHTML = "Failed to load movies";
         });
 }
+
+// Load movies on page load
+getAllMovies();

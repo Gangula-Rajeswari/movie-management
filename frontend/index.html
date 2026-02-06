@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Movie Management App</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -12,22 +13,22 @@
     <p class="tagline">Spring Boot REST API Demo</p>
 
     <div class="grid">
+
         <!-- Add Movie -->
         <div class="card">
             <h2>Add Movie</h2>
-            <input id="id" type="number" placeholder="ID">
-            <input id="name" placeholder="Name">
-            <!--<input id="description" placeholder="Description">-->
-            <input id="rating" type="number" step="0.1" placeholder="Rating (0-10)">
-            <button onclick="addMovie()">Add</button>
+            <input id="name" placeholder="Movie Name" />
+            <textarea id="description" placeholder="Description"></textarea>
+            <input id="rating" type="number" placeholder="Rating (1–5)" />
+            <button onclick="addMovie()">Add Movie</button>
         </div>
 
         <!-- Get Movie -->
         <div class="card">
-            <h2>Get Movie</h2>
-            <input id="searchId" placeholder="Movie ID">
-            <pre id="result"></pre>
+            <h2>Get Movie by ID</h2>
+            <input id="searchMovieId" placeholder="Movie ID" />
             <button onclick="getMovie()">Search</button>
+            <pre id="searchResult"></pre>
         </div>
 
         <!-- All Movies -->
@@ -36,6 +37,7 @@
             <button class="secondary" onclick="getAllMovies()">Refresh</button>
             <div id="movieList" class="movie-list"></div>
         </div>
+
     </div>
 </div>
 
