@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Management App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+    <h1>🎬 Movie Management</h1>
+    <p class="tagline">Spring Boot REST API Demo</p>
+
+    <div class="grid">
+        <!-- Add Movie -->
+        <div class="card">
+            <h2>Add Movie</h2>
+            <input id="id" type="number" placeholder="ID">
+            <input id="name" placeholder="Name">
+            <!--<input id="description" placeholder="Description">-->
+            <input id="rating" type="number" step="0.1" placeholder="Rating (0-10)">
+            <button onclick="addMovie()">Add</button>
+        </div>
+
+        <!-- Get Movie -->
+        <div class="card">
+            <h2>Get Movie</h2>
+            <input id="searchId" placeholder="Movie ID">
+            <pre id="result"></pre>
+            <button onclick="getMovie()">Search</button>
+        </div>
+
+        <!-- All Movies -->
+        <div class="card">
+            <h2>All Movies</h2>
+            <button class="secondary" onclick="getAllMovies()">Refresh</button>
+            <div id="movieList" class="movie-list"></div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

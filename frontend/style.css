@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;   /* ❌ NO SCROLL */
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    color: white;
+}
+
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.tagline {
+    margin: 4px 0 16px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 90%;
+    max-width: 1100px;
+}
+
+.card {
+    background: white;
+    color: #333;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    height: 340px;   /* fixed height */
+    display: flex;
+    flex-direction: column;
+}
+
+.card h2 {
+    text-align: center;
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+}
+
+button {
+    margin-top: auto;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    background: #e50914;
+    color: white;
+    cursor: pointer;
+}
+
+button.secondary {
+    background: #333;
+}
+
+pre {
+    background: #f2f2f2;
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 12px;
+    max-height: 120px;
+    overflow: hidden;  /* no scroll */
+}
+
+.movie-list {
+    margin-top: 8px;
+    overflow: hidden;  /* no scroll */
+    font-size: 12px;
+}
+
+.movie-item {
+    background: #f5f5f5;
+    padding: 6px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
